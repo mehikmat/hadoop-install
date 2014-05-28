@@ -6,7 +6,7 @@ CDH-5.0.1 [Apache Hadoop 2.3.0]
 - Supported Internet Protocol: CDH requires IPv4. IPv6 is not supported.
 - SSH configuration:SSH should be configured
 
-####Installing CDH 5 on a Single Linux Node in Pseudo-distributed Mode
+####Installing CDH 5 YARN on a Single Linux Node in Pseudo-distributed Mode
 
 For development purpose, Apache Hadoop and CDH 5 components can be deployed
 on a single Linux node in pseudo-distributed mode.
@@ -23,20 +23,6 @@ $ cd /opt
 $ tar -xzf ~/hadoop-2.3.0-cdh5.0.1.tar.gz
 $ cd hadoop-2.3.0-cdh5.0.1
 ```
- 
-_Edit ~/.bashrc_
-
-```
-export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
-```
-#####Refresh bash profile `$ bash`
-
 _Edit config files_
  - core-site.xml
  - hdfs-site.xml
@@ -71,6 +57,20 @@ $ ./users.sh
 Create required directories
 $ ./dirs.sh
 ```
+
+_Edit ~/.bashrc_ file of hdfs and yarn user
+
+```
+export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+```
+
+#####Refresh bash profile `$ bash`
 ##STEP-3
 
 _Create HDFS dirs_

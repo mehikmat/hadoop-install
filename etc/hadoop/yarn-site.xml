@@ -56,4 +56,9 @@
     <name>yarn.nodemanager.remote-app-log-dir</name>
     <value>hdfs://var/log/hadoop/yarn/apps</value>
   </property>
+  <property>
+    <description>Yarn WebProxyApp</description>
+    <name>yarn.web-proxy.address</name>
+    <value>localhost</value>
+  </property>
 </configuration>

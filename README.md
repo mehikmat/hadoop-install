@@ -23,7 +23,6 @@ $ cd /opt
 $ tar -xzf ~/hadoop-2.3.0-cdh5.0.1.tar.gz
 $ cd hadoop-2.3.0-cdh5.0.1
 ```
- 
 _Edit config files_
  - core-site.xml
  - hdfs-site.xml

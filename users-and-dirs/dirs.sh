@@ -36,7 +36,7 @@ DFS_DATA_DIR=/hadoop/hdfs/dn
 HDFS_LOG_DIR=/var/log/hadoop/hdfs
 
 # Directory to store the HDFS process ID.
-HDFS_PID_DIR=/var/run/hadoop/hdfs
+HDFS_PID_DIR=/var/pid/hadoop/hdfs
 
 #
 # Hadoop Service - YARN 
@@ -54,7 +54,7 @@ YARN_LOG_DIR=/var/log/hadoop/yarn
 YARN_LOCAL_LOG_DIR=/hadoop/yarn/logs
 
 # Directory to store the YARN process ID.
-YARN_PID_DIR=/var/run/hadoop/yarn
+YARN_PID_DIR=/var/pid/hadoop/yarn
 
 #
 # Hadoop Service - MAPREDUCE
@@ -64,7 +64,7 @@ YARN_PID_DIR=/var/run/hadoop/yarn
 MAPRED_LOG_DIR=/var/log/hadoop/mapred
 
 # Directory to store the mapreduce jobhistory process ID.
-MAPRED_PID_DIR=/var/run/hadoop/mapred
+MAPRED_PID_DIR=/var/pid/hadoop/mapred
 
 
 echo "Create namenode dir"

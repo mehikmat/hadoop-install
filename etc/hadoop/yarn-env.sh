@@ -83,7 +83,7 @@ IFS=
 #####################################################################
 export YARN_LOG_DIR=/var/log/hadoop/yarn
 # PID Directory. Default /tmp
-export YARN_PID_DIR=/var/run/hadoop/yarn
+export YARN_PID_DIR=/var/pid/hadoop/yarn
 # default log directory & file
 if [ "$YARN_LOG_DIR" = "" ]; then
   YARN_LOG_DIR="$HADOOP_YARN_HOME/logs"

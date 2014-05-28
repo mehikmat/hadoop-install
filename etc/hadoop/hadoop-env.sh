@@ -74,7 +74,7 @@ export HADOOP_SECURE_DN_LOG_DIR=${HADOOP_LOG_DIR}/${HADOOP_HDFS_USER}
 #       the user that will run the hadoop daemons.  Otherwise there is the
 #       potential for a symlink attack.
 #############################################################
-export HADOOP_PID_DIR=/var/run/hadoop/hdfs
+export HADOOP_PID_DIR=/var/pid/hadoop/hdfs
 export HADOOP_SECURE_DN_PID_DIR=${HADOOP_PID_DIR}
 
 # A string representing this instance of hadoop. $USER by default.

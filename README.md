@@ -24,19 +24,6 @@ $ tar -xzf ~/hadoop-2.3.0-cdh5.0.1.tar.gz
 $ cd hadoop-2.3.0-cdh5.0.1
 ```
  
-_Edit ~/.bashrc_
-
-```
-export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
-export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
-```
-#####Refresh bash profile `$ bash`
-
 _Edit config files_
  - core-site.xml
  - hdfs-site.xml
@@ -71,6 +58,20 @@ $ ./users.sh
 Create required directories
 $ ./dirs.sh
 ```
+
+_Edit ~/.bashrc_ file of hdfs and yarn user
+
+```
+export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+```
+
+#####Refresh bash profile `$ bash`
 ##STEP-3
 
 _Create HDFS dirs_

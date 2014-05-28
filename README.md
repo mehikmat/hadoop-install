@@ -88,14 +88,28 @@ $ sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
 
 Format HDFS
 ```
+If you have created separate user for each daemon
+
 $ sudo -u hdfs bin/hdfs namenode -format
+
+else
+
+$ bin/hdfs namenode -format 
+ 
 ```
 
 ##STEP-5
 _Start HDFS and YARN services_
 ```
+If you have created separate user for each deamon
+
 $ sudo -u hdfs sbin/start-dfs.sh
 $ sudo -u yarn sbin/start-yarn.sh
+
+else
+
+$ sbin/start-dfs.sh
+$ sbin/start-yarn.sh
 ```
 
 ###Utilities:

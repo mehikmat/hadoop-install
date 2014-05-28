@@ -6,7 +6,7 @@ CDH-5.0.1 [Apache Hadoop 2.3.0]
 - Supported Internet Protocol: CDH requires IPv4. IPv6 is not supported.
 - SSH configuration:SSH should be configured
 
-####Installing CDH 5 on a Single Linux Node in Pseudo-distributed Mode
+####Installing CDH 5 YARN on a Single Linux Node in Pseudo-distributed Mode
 
 For development purpose, Apache Hadoop and CDH 5 components can be deployed
 on a single Linux node in pseudo-distributed mode.

@@ -51,14 +51,14 @@ $ cd hadoop-install/users-and-dirs
 Set Java for all users
 $ ./java.sh
 
-Create users(if you want use separate users)
-$ ./users.sh
+OPTIONAL:>   #Create users(if you want use separate users)
+$ ./users.sh # no need to create multiple users in single node
 
 Create required directories
-$ ./dirs.sh
+$ ./dirs.sh  # edit HDFS_USER,YARN_UER,and MAPRED_USER variables in this file to point same user
 ```
 
-_Edit ~/.bashrc_ file of hdfs and yarn user
+_Edit ~/.bashrc_ [optionally for file of hdfs and yarn user]
 
 ```
 export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1

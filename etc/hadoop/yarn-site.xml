@@ -29,7 +29,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>localhost:8025</value>
+    <value>localhost:8031</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
@@ -37,7 +37,7 @@
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>localhost:8040</value>
+    <value>localhost:8032</value>
   </property>
   <property>
     <name>yarn.nodemanager.local-dirs</name>

@@ -76,12 +76,12 @@ export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
 _Create HDFS dirs_
 ```
 Create the history directory and set permissions and owner
-$ sudo -u hdfs hadoop fs -mkdir -p /user/history
-$ sudo -u hdfs hadoop fs -chmod -R 1777 /user/history
-$ sudo -u hdfs hadoop fs -chown mapred:hadoop /user/history
+$ sudo -u hdfs hdfs dfs -mkdir -p /user/log/history       OR [hdfs dfs -mkdir -p /user/log/history]
+$ sudo -u hdfs hdfs dfs -chmod -R 1777 /user/log/history  OR [hdfs dfs -chmod -R 1777 /user/log/history]
+$ sudo -u hdfs hdfs dfs -chown mapred:hadoop /user/log/history OR [hdfs dfs -chown mapred:hadoop /user/log/history]
 
-$ sudo -u hdfs hadoop fs -mkdir /tmp
-$ sudo -u hdfs hadoop fs -chmod -R 1777 /tmp
+$ sudo -u hdfs hadoop fs -mkdir /tmp OR [hadoop fs -mkdir /tmp]
+$ sudo -u hdfs hadoop fs -chmod -R 1777 /tmp OR [hadoop fs -chmod -R 1777 /tmp]
 ```
 
 ##STEP-4

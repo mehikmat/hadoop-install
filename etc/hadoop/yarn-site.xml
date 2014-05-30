@@ -48,13 +48,13 @@
     <value>/var/log/hadoop/yarn</value>
   </property>
   <property>
-  </property>
     <name>yarn.log-aggregation-enable</name>
     <value>true</value> 
+  </property>
   <property>
     <description>Where to aggregate logs</description>
     <name>yarn.nodemanager.remote-app-log-dir</name>
-    <value>hdfs://var/log/hadoop/yarn/apps</value>
+    <value>/user/log/history</value>
   </property>
   <property>
     <description>Yarn WebProxyApp</description>

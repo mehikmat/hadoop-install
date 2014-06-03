@@ -169,6 +169,17 @@ Put following lines in hadoop-env.sh file
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/"
 export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
 ```
+
+###Instruction for running Cascading 2.5.3 jobs on CDH5.0.1
+- Add your dependent jars to HADOOP_CLASSPATH in hadoop_env.sh file
+- Copy following jars to $HADOOP_HADOOP/share/hadoop/mapreduce2 folder
+```
+- cascading-core-2.5.3.jar
+- cascading-hadoop-2.5.3.jar
+- jgrapht-jdk1.6-0.8.1.jar
+```
+
+
 ####References:
 - http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_yarn_cluster_deploy.html
 - http://raseshmori.wordpress.com/2012/10/14/install-hadoop-nextgen-yarn-multi-node-cluster/

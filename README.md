@@ -171,8 +171,8 @@ export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
 ```
 
 ###Instruction for running Cascading 2.5.3 jobs on CDH5.0.1
-- Add your dependent jars to HADOOP_CLASSPATH in hadoop_env.sh file
-- Copy following jars to $HADOOP_HADOOP/share/hadoop/mapreduce2 folder
+- Add your dependent jars to `HADOOP_CLASSPATH` in `hadoop_env.sh` file
+- Copy following jars to `$HADOOP_HADOOP/share/hadoop/mapreduce2` folder
 ```
 - cascading-core-2.5.3.jar
 - cascading-hadoop-2.5.3.jar

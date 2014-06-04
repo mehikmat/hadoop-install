@@ -65,7 +65,7 @@ export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
 export HADOOP_MAPRED_HOME=$HADOOP_HOME
 export HADOOP_COMMON_HOME=$HADOOP_HOME
 export HADOOP_HDFS_HOME=$HADOOP_HOME
-export YARN_HOME=$HADOOP_HOME
+export HADOOP_YARN_HOME=$HADOOP_HOME
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ```
@@ -170,23 +170,8 @@ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/"
 export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
 ```
 
-###Instruction for running Cascading 2.5.3 jobs on CDH5.0.1
-- Add your dependent jars to `HADOOP_CLASSPATH` in `hadoop_env.sh` file
-- Copy following jars to `$HADOOP_HADOOP/share/hadoop/mapreduce2` folder
-```
-- cascading-core-2.5.3.jar
-- cascading-hadoop-2.5.3.jar
-- jgrapht-jdk1.6-0.8.1.jar
-```
-
-###Instruction for running Cascading 2.1.6 jobs on CDH5.0.1
-- Add your dependent jars to `HADOOP_CLASSPATH` in `hadoop_env.sh` file
-- Copy following jars to `$HADOOP_HADOOP/share/hadoop/mapreduce2` folder
-```
-- cascading-core-2.1.6.jar
-- cascading-hadoop-2.1.6.jar
-- jgrapht-jdk1.6-0.8.1.jar
-```
+###Instruction for running Cascading 2.5.3/2.1.6 jobs on CDH5.0.1
+- Add your dependent jars to `yarn.application.classpath` in `yarn-site.xml` file
 
 
 ####References:

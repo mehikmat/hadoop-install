@@ -61,4 +61,12 @@
     <name>yarn.web-proxy.address</name>
     <value>localhost:9090</value>
   </property>
+  <property>
+    <description>CLASSPATH for YARN applications. A comma-separated list of CLASSPATH entries.</description>
+    <name>yarn.application.classpath</name>
+    <value>$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/share/hadoop/common/*,$HADOOP_COMMON_HOME/share/hadoop/mapreduce2/*,
+ $HADOOP_COMMON_HOME/share/hadoop/common/lib/*,$HADOOP_HDFS_HOME/share/hadoop/hdfs/*,
+ $HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,
+ $HADOOP_YARN_HOME/share/hadoop/yarn/lib/*,/data/lib/*</value>
+  </property>
 </configuration>

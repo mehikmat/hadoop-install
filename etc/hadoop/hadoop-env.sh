@@ -23,6 +23,16 @@
 # set JAVA_HOME in this file, so that it is correctly defined on
 # remote nodes.
 
+#################HADOOP###########################
+export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export HADOOP_YARN_HOME=$HADOOP_HOME 
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+##################HADOOP##########################
+
 # The java implementation to use.
 ########################################################
 export JAVA_HOME=/opt/jdk1.7.0_15
@@ -40,7 +50,6 @@ for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
     export HADOOP_CLASSPATH=$f
   fi
 done
-#export $HADOOP_CLASSPATH=$HADOOP_CLASSPATH:/data/lib
 
 # The maximum amount of heap to use, in MB. Default is 1000.
 #export HADOOP_HEAPSIZE=

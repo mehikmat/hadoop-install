@@ -178,3 +178,4 @@ export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
 - http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_yarn_cluster_deploy.html
 - http://raseshmori.wordpress.com/2012/10/14/install-hadoop-nextgen-yarn-multi-node-cluster/
 - https://www.digitalocean.com/community/articles/how-to-install-hadoop-on-ubuntu-13-10
+- http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_mapreduce_to_yarn_migrate.html

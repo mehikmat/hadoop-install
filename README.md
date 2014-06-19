@@ -127,22 +127,19 @@ $ sbin/start-yarn.sh
 
 ##STEP-6
 Check installation using `jps`
-
-For master:
 ```
 $ jps
-6539 ResourceManager
-6451 DataNode
-8701 Jps
-6895 JobHistoryServer
-6234 NameNode
-6765 NodeManager
-
-For slaves:
-$ jps
-8014 NodeManager
-7858 DataNode
-9868 Jps
+20803 NameNode
+22056 JobHistoryServer
+22124 WebAppProxyServer
+7926 Main
+21817 NodeManager
+21560 ResourceManager
+8018 RemoteMavenServer
+21373 SecondaryNameNode
+21049 DataNode
+25651 ElasticSearch
+28730 Jps
 
 ```
 
@@ -154,20 +151,36 @@ If these services are not up, check the logs in `logs` directory to identify the
 - ResourceManager:>  http://master:8088/cluster
 - JobHistoryServer:> http://master:19888/jobhistory
 
-###Hadoop Native Code Loading
+###Building Hadoop Native Library
 
-If you see  WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Then you have to re-compile hadoop native code manually and then put libhadoop-*.so in classpath
+If you see  
 ```
-$ cd $HADOOP_HOME/src/hadoop-dist
+WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+```
+Then you have to re-compile hadoop native code manually and then put libhadoop-*.so in classpath
+
+Prerequistes:
+- $ sudo apt-get install build-essential
+- $ sudo apt-get install g++ autoconf automake 
+
+And make sure that cmake is installed correctly.
+
+```
+$ cd $HADOOP_HOME/src
 $ mvn package -Pdist,native -Dskiptests -Dtar
 
 You should see the newly-built library in:
+
 $ hadoop-dist/target/hadoop-2.3.0-cdh5.1.0/lib/native
 
 Put following lines in hadoop-env.sh file
+
 export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/"
 export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
+
+OR simply,
+
+$ cp $HADOOP_HOME/src/hadoop-dist/target/hadoop-2.3.0-cdh5.0.1/lib/native/*  $HADOOP_HOME/lib/native/
 ```
 
 ###Instruction for running Cascading 2.5.3/2.1.6 jobs on CDH5.0.1

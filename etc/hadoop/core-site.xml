@@ -25,12 +25,16 @@
     <name>hadoop.tmp.dir</name> 
     <value>/tmp</value> 
   </property> 
-	<property>
-		<name>hadoop.proxyuser.mapred.groups</name>
-		<value>*</value>
-	</property>
   <property>
-		<name>hadoop.proxyuser.mapred.hosts</name>
-		<value>*</value>
-	</property>       
+    <name>hadoop.proxyuser.mapred.groups</name>
+    <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.proxyuser.mapred.hosts</name>
+   <value>*</value>
+  </property>
+  <property>
+    <name>hadoop.http.staticuser.user</name>
+   <value>Hikmat</value>
+  </property> 
 </configuration>

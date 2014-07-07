@@ -50,8 +50,8 @@ for f in $HADOOP_HOME/contrib/capacity-scheduler/*.jar; do
     export HADOOP_CLASSPATH=$f
   fi
 done
-
-# The maximum amount of heap to use, in MB. Default is 1000.
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:path/to/your/custom/libs
+#The maximum amount of heap to use, in MB. Default is 1000.
 #export HADOOP_HEAPSIZE=
 #export HADOOP_NAMENODE_INIT_HEAPSIZE=""
 

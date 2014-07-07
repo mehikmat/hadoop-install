@@ -187,6 +187,60 @@ $ cp $HADOOP_HOME/src/hadoop-dist/target/hadoop-2.3.0-cdh5.0.1/lib/native/*  $HA
 - Add your dependent jars to `yarn.application.classpath` in `yarn-site.xml` file
 
 
+###Setting up LZO compression
+Install liblzo
+- On Redhat based systems
+`sudo yum install liblzo-devel`
+- On Debian based systems
+`sudo apt-get install liblzo2-dev`
+
+Clone the hadoop-lzo from github
+```
+$ git clone https://github.com/twitter/hadoop-lzo.git
+$ cd hadoop-lzo
+$ mvn clean package
+```
+
+Place the hadoop-lzo-*.jar somewhere on your cluste classpath
+```
+$ cp hadoop-lzo/target/hadoop-lzo-0.4.20-SNAPSHOT.jar /data/lib/ 
+```
+
+Place the native hadoop-lzo binaries in hadoop native directory
+```
+$ cp hadoop-lzo/target/native/Linux-amd64-64/lib/* $HADOOP_HOME/lib/native/hadoop-lzo/
+```
+
+Add the following to your `core-site.xml`:
+```
+<property>
+<name>io.compression.codecs</name>
+<value>
+	org.apache.hadoop.io.compress.GzipCodec,
+	org.apache.hadoop.io.compress.DefaultCodec,
+	org.apache.hadoop.io.compress.BZip2Codec,
+	com.hadoop.compression.lzo.LzoCodec,
+	com.hadoop.compression.lzo.LzopCodec
+</value>
+</property>
+<property>
+	<name>io.compression.codec.lzo.class</name>
+	<value>com.hadoop.compression.lzo.LzoCodec</value>
+</property>
+```
+
+Add the following to your `mapred-site.xml`:
+```
+<property>
+  <name>mapred.child.env</name>
+  <value>JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native/hadoop-lzo/</value>
+</property>
+<property>
+  <name>mapred.map.output.compression.codec</name>
+  <value>com.hadoop.compression.lzo.LzoCodec</value>
+</property>
+```
+
 ####References:
 - http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_yarn_cluster_deploy.html
 - http://raseshmori.wordpress.com/2012/10/14/install-hadoop-nextgen-yarn-multi-node-cluster/

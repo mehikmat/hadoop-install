@@ -17,3 +17,4 @@ $JAVA_HOME/bin/jps
 #5562 Jps
 #4278 DataNode
 #3367 RemoteMavenServer
+#/opt/hue-3/hue/build/env/bin/supervisor &

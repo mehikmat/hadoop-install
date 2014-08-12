@@ -241,8 +241,25 @@ Add the following to your `mapred-site.xml`:
 </property>
 ```
 
-####References:
+###References:
 - http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_yarn_cluster_deploy.html
 - http://raseshmori.wordpress.com/2012/10/14/install-hadoop-nextgen-yarn-multi-node-cluster/
 - https://www.digitalocean.com/community/articles/how-to-install-hadoop-on-ubuntu-13-10
 - http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_mapreduce_to_yarn_migrate.html
+
+###References to set up Hadoop Cluster in AWS
+- http://blog.c2b2.co.uk/2014/05/hadoop-v2-overview-and-cluster-setup-on.html#comment-form [For installation]
+- http://hadoop.apache.org/docs/r2.4.0/hadoop-project-dist/hadoop-common/ClusterSetup.html [For configuration]
+
+####What is on what
+```
+Master Node:
+ - NameNode
+ - ResousrceManager
+ - JobHistoryServer
+ 
+Slave Node:
+ - NodeManager
+ - DataNode
+ - WebAppProxyServer
+```

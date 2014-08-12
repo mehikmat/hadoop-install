@@ -263,3 +263,34 @@ Slave Node:
  - DataNode
  - WebAppProxyServer
 ```
+
+Script To Calculate Memory Configuration
+----------------------------------------
+```
+$ git  clone https://github.com/mehikmat/hadoop-install.git
+$ cd hadoop-install
+$ python yarn-utils.py -c 2 -m 4 -d 1 -k False
+```
+```
+>>>>>>> 
+ Using cores=2 memory=4GB disks=1 hbase=False
+ Profile: cores=2 memory=3072MB reserved=1GB usableMem=3GB disks=1
+ Num Container=3
+ Container Ram=1024MB
+ Used Ram=3GB
+ Unused Ram=1GB
+ yarn.scheduler.minimum-allocation-mb=1024
+ yarn.scheduler.maximum-allocation-mb=3072
+ yarn.nodemanager.resource.memory-mb=3072
+ mapreduce.map.memory.mb=1024
+ mapreduce.map.java.opts=-Xmx819m
+ mapreduce.reduce.memory.mb=2048
+ mapreduce.reduce.java.opts=-Xmx1638m
+ yarn.app.mapreduce.am.resource.mb=2048
+ yarn.app.mapreduce.am.command-opts=-Xmx1638m
+ mapreduce.task.io.sort.mb=409
+```
+References
+----------
+- http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.0.9.1/bk_installing_manually_book/content/rpm-chap1-11.html
+

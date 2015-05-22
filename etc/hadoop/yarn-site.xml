@@ -69,4 +69,13 @@
  $HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,$HADOOP_YARN_HOME/share/hadoop/yarn/*,
  $HADOOP_YARN_HOME/share/hadoop/yarn/lib/*,/data/lib/*</value>
   </property>
+
+  <property>
+     <name>yarn.resourcemanager.scheduler.class</name>
+     <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+  </property>
+  <property>
+  <name>yarn.scheduler.fair.allocation.file</name>
+     <value>$HADOOP_HOME/etc/hadoop/fair-scheduler.xml</value>  
+  </property>
 </configuration>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<allocations>
+  <user name="hikmat">
+    <maxRunningApps>5</maxRunningApps>
+  </user>
+  <userMaxAppsDefault>5</userMaxAppsDefault>
+  <fairSharePreemptionTimeout>30</fairSharePreemptionTimeout>
+</allocations>

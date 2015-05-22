@@ -294,3 +294,29 @@ References
 ----------
 - http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.0.9.1/bk_installing_manually_book/content/rpm-chap1-11.html
 
+###Configuring Fair Scheduler in Hadoop YARN
+- Create a file named fair-scheduler.xml inside `$HADOOP_HOME/etc/hadoop`
+- put following lines in that file
+```
+<?xml version="1.0"?>
+<allocations>
+  <user name="hikmat">
+    <maxRunningApps>5</maxRunningApps>
+  </user>
+  <userMaxAppsDefault>5</userMaxAppsDefault>
+  <fairSharePreemptionTimeout>30</fairSharePreemptionTimeout>
+</allocations>
+```
+- put following lines in `$HADOOP_HOME/etc/hadoop/yarn-site.xml` file
+```
+<property>
+  <name>yarn.resourcemanager.scheduler.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+</property>
+<property>
+  <name>yarn.scheduler.fair.allocation.file</name>
+  <value>/opt/hadoop/etc/hadoop/fair-scheduler.xml</value>
+</property>
+```
+
+Restart hadoop nodes :)

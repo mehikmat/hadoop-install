@@ -37,4 +37,8 @@
     <name>dfs.permissions.superusergroup </name>
     <value>hadoop</value>
   </property>
+  <property>
+      <name>dfs.blocksize</name>
+      <value>134217728</value>
+  </property>
 </configuration>

@@ -6,7 +6,7 @@ Apache Hadoop 3.2.2
 - Supported Internet Protocol: IPv4.
 - SSH configuration: Password less SSH should be configured.
 
-####Installing Hadoop on a Single Linux Node in Pseudo-distributed Mode
+###Installing Hadoop on a Single Linux Node in Pseudo-distributed Mode
 
 For development purpose, Apache Hadoop components can be deployed on a single Linux node in pseudo-distributed mode.
 In pseudo-distributed mode, Hadoop processing is distributed over all of the cores/processors on a single machine. 
@@ -59,14 +59,14 @@ $ git clone https://github.com/mehikmat/hadoop-install.git
 $ cp -R hadoop-install/etc/hadoop/* $HADOOP_HOME/etc/hadoop/
 ```
 
-##STEP-4
+###STEP-4
 
 Format namenode
 ```
 $ hadoop namenode -format 
 ```
 
-##STEP-5
+###STEP-5
 _Start HDFS and YARN services_
 ```
 $ start-dfs.sh
@@ -88,7 +88,7 @@ $ yarn-daemons.sh start proxyserver
 - $HADOOP_HOME/sbin/yarn-daemons.sh start historyserver/proxyserver
 
 
-##STEP-6
+###STEP-6
 Check installation using `jps`
 ```
 $ jps

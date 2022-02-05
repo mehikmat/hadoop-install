@@ -1,27 +1,25 @@
-CDH-5.0.1 [Apache Hadoop 2.3.0]
+Apache Hadoop 3.2.2
 =============================
 ####Prerequisites
-- Supported Operating Systems: RedhatEL,Ubuntu,Debian,CentOS,SLES,OracleLinux->64-bit
-- Supported JDK Versions: >= jdk-1.7.0_25_
-- Supported Internet Protocol: CDH requires IPv4. IPv6 is not supported.
-- SSH configuration:SSH should be configured
+- Supported Operating Systems: GNU/Linux.
+- Supported JDK Versions: >= jdk-8.
+- Supported Internet Protocol: IPv4.
+- SSH configuration: Password less SSH should be configured.
 
-####Installing CDH 5 YARN on a Single Linux Node in Pseudo-distributed Mode
+####Installing Hadoop on a Single Linux Node in Pseudo-distributed Mode
 
-For development purpose, Apache Hadoop and CDH 5 components can be deployed
-on a single Linux node in pseudo-distributed mode.
-In pseudo-distributed mode, Hadoop processing is distributed over all of the
-cores/processors on a single machine. Hadoop writes all files to the
-Hadoop Distributed File System (HDFS), and all services and daemons communicate
+For development purpose, Apache Hadoop components can be deployed on a single Linux node in pseudo-distributed mode.
+In pseudo-distributed mode, Hadoop processing is distributed over all of the cores/processors on a single machine. 
+Hadoop writes all files to the Hadoop Distributed File System (HDFS), and all services and daemons communicate
 over local TCP sockets for inter-process communication.
 
 ###STEP-1
 ```
-Download CDH tarball from cloudera
-$ wget http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.3.0-cdh5.0.1.tar.gz
+Download Apache Hadoop tarball
 $ cd /opt
-$ tar -xzf ~/hadoop-2.3.0-cdh5.0.1.tar.gz
-$ cd hadoop-2.3.0-cdh5.0.1
+$ wget https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.2.2/hadoop-3.2.2.tar.gz
+$ tar -xzf hadoop-3.2.2.tar.gz
+$ cd hadoop-3.2.2
 ```
 _Edit config files_
  - core-site.xml
@@ -41,56 +39,31 @@ $ cp -R hadoop-install/etc/hadoop/* $HADOOP_HOME/etc/hadoop/
 
 
 ###STEP-2
-
-Create dirs,user, and set Java Home for all users
+Create required directories and environment variables. Hadoop Requires directories for namenode and data nodes.
 
 ```
 $ git clone https://github.com/mehikmat/hadoop-install.git
-$ cd hadoop-install/users-and-dirs
-
-Set Java for all users
-$ ./java.sh
-
-OPTIONAL:>   #Create users(if you want use separate users)
-$ ./users.sh # no need to create multiple users in single node
-
-Create required directories
-$ ./dirs.sh  # edit HDFS_USER,YARN_UER,and MAPRED_USER variables in this file to point same user
+$ cd hadoop-install
+$ ./create_dirs.sh
 ```
 
-_Edit ~/.bashrc_ [optionally for file of hdfs and yarn user]
+_Export environment variables. Edit ~/.bashrc_  and add
 
 ```
-export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export HADOOP_YARN_HOME=$HADOOP_HOME
+export HADOOP_HOME=/opt/hadoop-3.2.2.tar.gz
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ```
 
 #####Refresh bash profile `$ bash`
+
+```
+
 ##STEP-3
 
-_Create HDFS dirs_
+Format namenode
 ```
-Create the history directory and set permissions and owner
-$ sudo -u hdfs hdfs dfs -mkdir -p /user/log/history       OR [hdfs dfs -mkdir -p /user/log/history]
-$ sudo -u hdfs hdfs dfs -chmod -R 1777 /user/log/history  OR [hdfs dfs -chmod -R 1777 /user/log/history]
-$ sudo -u hdfs hdfs dfs -chown mapred:hadoop /user/log/history OR [hdfs dfs -chown mapred:hadoop /user/log/history]
-
-$ sudo -u hdfs hadoop fs -mkdir /tmp OR [hadoop fs -mkdir /tmp]
-$ sudo -u hdfs hadoop fs -chmod -R 1777 /tmp OR [hadoop fs -chmod -R 1777 /tmp]
-```
-
-##STEP-4
-
-Format HDFS
-```
-If you have created separate user for each daemon
-
-$ sudo -u hdfs bin/hdfs namenode -format
+$ hadoop namenode -format
 
 else
 
@@ -98,18 +71,13 @@ $ bin/hdfs namenode -format
  
 ```
 
-##STEP-5
+##STEP-4
 _Start HDFS and YARN services_
 ```
-If you have created separate user for each deamon
-
-$ sudo -u hdfs sbin/start-dfs.sh
-$ sudo -u yarn sbin/start-yarn.sh
-
-else
-
-$ sbin/start-dfs.sh
-$ sbin/start-yarn.sh
+$ start-dfs.sh
+$ start-yarn.sh
+$ yarn-daemons.sh start historyserver
+$ yarn-daemons.sh start proxyserver
 ```
 
 ###Utilities:
@@ -122,34 +90,30 @@ $ sbin/start-yarn.sh
 - $HADOOP_HOME/sbin/start-yarn.sh;stop-yarn.sh
 - $HADOOP_HOME/sbin/start-dfs.sh;stop-dfs.sh 
 - $HADOOP_HOME/sbin/start-all.sh;stop-all.sh    
-- $HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver
+- $HADOOP_HOME/sbin/yarn-daemons.sh start historyserver/proxyserver
 
 
-##STEP-6
+##STEP-5
 Check installation using `jps`
 ```
 $ jps
 20803 NameNode
 22056 JobHistoryServer
 22124 WebAppProxyServer
-7926 Main
 21817 NodeManager
 21560 ResourceManager
-8018 RemoteMavenServer
 21373 SecondaryNameNode
 21049 DataNode
-25651 ElasticSearch
 28730 Jps
 
 ```
 
-If these services are not up, check the logs in `logs` directory to identify the issue.
+If these services are not up, check the logs in `$HADOOP_HOME/logs` directory to identify the issue.
 
 ###Web interfaces
-
-- NameNode:>         http://master:50070/dfshealth.jsp
-- ResourceManager:>  http://master:8088/cluster
-- JobHistoryServer:> http://master:19888/jobhistory
+- NameNode:>         http://localhost:9870
+- ResourceManager:>  http://localhost:8088
+- JobHistoryServer:> http://localhost:19888
 
 ###Building Hadoop Native Library
 
@@ -168,24 +132,8 @@ And make sure that cmake is installed correctly.
 ```
 $ cd $HADOOP_HOME/src
 $ mvn package -Pdist,native -Dskiptests -Dtar
-
-You should see the newly-built library in:
-
-$ hadoop-dist/target/hadoop-2.3.0-cdh5.1.0/lib/native
-
-Put following lines in hadoop-env.sh file
-
-export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/"
-export HADOOP_COMMON_LIB_NATIVE_DIR="path/to/native"
-
-OR simply,
-
-$ cp $HADOOP_HOME/src/hadoop-dist/target/hadoop-2.3.0-cdh5.0.1/lib/native/*  $HADOOP_HOME/lib/native/
+$ cp $HADOOP_HOME/src/hadoop-dist/target/hadoop-3.2.2/lib/native/*  $HADOOP_HOME/lib/native/
 ```
-
-###Instruction for running Cascading 2.5.3/2.1.6 jobs on CDH5.0.1
-- Add your dependent jars to `yarn.application.classpath` in `yarn-site.xml` file
-
 
 ###Setting up LZO compression
 Install liblzo
@@ -203,7 +151,7 @@ $ mvn clean package
 
 Place the hadoop-lzo-*.jar somewhere on your cluste classpath
 ```
-$ cp hadoop-lzo/target/hadoop-lzo-0.4.20-SNAPSHOT.jar /data/lib/ 
+$ cp hadoop-lzo/target/hadoop-lzo-0.4.20-SNAPSHOT.jar $HADOOP_HOME/share/common/ 
 ```
 
 Place the native hadoop-lzo binaries in hadoop native directory
@@ -242,14 +190,7 @@ Add the following to your `mapred-site.xml`:
 ```
 
 ###References:
-- http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_yarn_cluster_deploy.html
-- http://raseshmori.wordpress.com/2012/10/14/install-hadoop-nextgen-yarn-multi-node-cluster/
-- https://www.digitalocean.com/community/articles/how-to-install-hadoop-on-ubuntu-13-10
-- http://www.cloudera.com/content/cloudera-content/cloudera-docs/CDH5/latest/CDH5-Installation-Guide/cdh5ig_mapreduce_to_yarn_migrate.html
-
-###References to set up Hadoop Cluster in AWS
-- http://blog.c2b2.co.uk/2014/05/hadoop-v2-overview-and-cluster-setup-on.html#comment-form [For installation]
-- http://hadoop.apache.org/docs/r2.4.0/hadoop-project-dist/hadoop-common/ClusterSetup.html [For configuration]
+- https://hadoop.apache.org
 
 ####What is on what
 ```
@@ -257,6 +198,7 @@ Master Node:
  - NameNode
  - ResousrceManager
  - JobHistoryServer
+ - SecondaryNameNode
  
 Slave Node:
  - NodeManager
@@ -264,59 +206,4 @@ Slave Node:
  - WebAppProxyServer
 ```
 
-Script To Calculate Memory Configuration
-----------------------------------------
-```
-$ git  clone https://github.com/mehikmat/hadoop-install.git
-$ cd hadoop-install
-$ python yarn-utils.py -c 2 -m 4 -d 1 -k False
-```
-```
->>>>>>> 
- Using cores=2 memory=4GB disks=1 hbase=False
- Profile: cores=2 memory=3072MB reserved=1GB usableMem=3GB disks=1
- Num Container=3
- Container Ram=1024MB
- Used Ram=3GB
- Unused Ram=1GB
- yarn.scheduler.minimum-allocation-mb=1024
- yarn.scheduler.maximum-allocation-mb=3072
- yarn.nodemanager.resource.memory-mb=3072
- mapreduce.map.memory.mb=1024
- mapreduce.map.java.opts=-Xmx819m
- mapreduce.reduce.memory.mb=2048
- mapreduce.reduce.java.opts=-Xmx1638m
- yarn.app.mapreduce.am.resource.mb=2048
- yarn.app.mapreduce.am.command-opts=-Xmx1638m
- mapreduce.task.io.sort.mb=409
-```
-References
-----------
-- http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.0.9.1/bk_installing_manually_book/content/rpm-chap1-11.html
-
-###Configuring Fair Scheduler in Hadoop YARN
-- Create a file named fair-scheduler.xml inside `$HADOOP_HOME/etc/hadoop`
-- put following lines in that file
-```
-<?xml version="1.0"?>
-<allocations>
-  <user name="hikmat">
-    <maxRunningApps>5</maxRunningApps>
-  </user>
-  <userMaxAppsDefault>5</userMaxAppsDefault>
-  <fairSharePreemptionTimeout>30</fairSharePreemptionTimeout>
-</allocations>
-```
-- put following lines in `$HADOOP_HOME/etc/hadoop/yarn-site.xml` file
-```
-<property>
-  <name>yarn.resourcemanager.scheduler.class</name>
-  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
-</property>
-<property>
-  <name>yarn.scheduler.fair.allocation.file</name>
-  <value>/opt/hadoop/etc/hadoop/fair-scheduler.xml</value>
-</property>
-```
-
-Restart hadoop nodes :)
+You are done! :)

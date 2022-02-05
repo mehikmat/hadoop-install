@@ -1,7 +1,7 @@
 #Start all hadoop daemons
 $HADOOP_HOME/sbin/start-dfs.sh
 $HADOOP_HOME/sbin/start-yarn.sh
-$HADOOP_HOME/sbin/mr-jobhistory-daemon.sh start historyserver
+$HADOOP_HOME/sbin/yarn-daemon.sh start historyserver
 $HADOOP_HOME/sbin/yarn-daemon.sh start proxyserver
 
 #Show started daemons

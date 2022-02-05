@@ -21,25 +21,9 @@ $ wget https://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-3.2.2/hadoop-3
 $ tar -xzf hadoop-3.2.2.tar.gz
 $ cd hadoop-3.2.2
 ```
-_Edit config files_
- - core-site.xml
- - hdfs-site.xml
- - mapred-site.xml
- - yarn-site.xml
- - hadoop-env.sh
- - yarn-env.sh
- - mapred-env.sh
- 
-    OR
-
-```
-$ git clone https://github.com/mehikmat/hadoop-install.git
-$ cp -R hadoop-install/etc/hadoop/* $HADOOP_HOME/etc/hadoop/
-```
-
 
 ###STEP-2
-Create required directories and environment variables. Hadoop Requires directories for namenode and data nodes.
+Create required directories and environment variables. Hadoop Requires directories for name node and data nodes.
 
 ```
 $ git clone https://github.com/mehikmat/hadoop-install.git
@@ -57,21 +41,32 @@ export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 #####Refresh bash profile `$ bash`
 
-```
+###STEP-3
 
-##STEP-3
-
-Format namenode
-```
-$ hadoop namenode -format
-
-else
-
-$ bin/hdfs namenode -format 
+_Edit config files_
+ - core-site.xml
+ - hdfs-site.xml
+ - mapred-site.xml
+ - yarn-site.xml
+ - hadoop-env.sh
+ - yarn-env.sh
+ - mapred-env.sh
  
+    OR
+
+```
+$ git clone https://github.com/mehikmat/hadoop-install.git
+$ cp -R hadoop-install/etc/hadoop/* $HADOOP_HOME/etc/hadoop/
 ```
 
 ##STEP-4
+
+Format namenode
+```
+$ hadoop namenode -format 
+```
+
+##STEP-5
 _Start HDFS and YARN services_
 ```
 $ start-dfs.sh
@@ -93,7 +88,7 @@ $ yarn-daemons.sh start proxyserver
 - $HADOOP_HOME/sbin/yarn-daemons.sh start historyserver/proxyserver
 
 
-##STEP-5
+##STEP-6
 Check installation using `jps`
 ```
 $ jps

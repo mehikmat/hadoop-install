@@ -24,18 +24,13 @@
 # remote nodes.
 
 #################HADOOP###########################
-export HADOOP_HOME=/opt/hadoop-2.3.0-cdh5.0.1
-export HADOOP_MAPRED_HOME=$HADOOP_HOME
-export HADOOP_COMMON_HOME=$HADOOP_HOME
-export HADOOP_HDFS_HOME=$HADOOP_HOME
-export HADOOP_YARN_HOME=$HADOOP_HOME 
+export HADOOP_HOME=/opt/hadoop-3.2.2
 export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
-export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop
 ##################HADOOP##########################
 
 # The java implementation to use.
 ########################################################
-export JAVA_HOME=/opt/jdk1.7.0_15
+export JAVA_HOME=/opt/jdk1.8.0_15
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes.
 #export JSVC_HOME=${JSVC_HOME}

@@ -1,19 +1,19 @@
 Apache Hadoop 3.2.2
 =============================
-####Prerequisites
+#### Prerequisites
 - Supported Operating Systems: GNU/Linux.
 - Supported JDK Versions: >= jdk-8.
 - Supported Internet Protocol: IPv4.
 - SSH configuration: Password less SSH should be configured.
 
-###Installing Hadoop on a Single Linux Node in Pseudo-distributed Mode
+### Installing Hadoop on a Single Linux Node in Pseudo-distributed Mode
 
 For development purpose, Apache Hadoop components can be deployed on a single Linux node in pseudo-distributed mode.
 In pseudo-distributed mode, Hadoop processing is distributed over all of the cores/processors on a single machine. 
 Hadoop writes all files to the Hadoop Distributed File System (HDFS), and all services and daemons communicate
 over local TCP sockets for inter-process communication.
 
-###STEP-1
+### STEP-1
 ```
 Download Apache Hadoop tarball
 $ cd /opt
@@ -22,7 +22,7 @@ $ tar -xzf hadoop-3.2.2.tar.gz
 $ cd hadoop-3.2.2
 ```
 
-###STEP-2
+### STEP-2
 Create required directories and environment variables. Hadoop Requires directories for name node and data nodes.
 
 ```
@@ -39,9 +39,9 @@ export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 ```
 
-#####Refresh bash profile `$ bash`
+##### Refresh bash profile `$ bash`
 
-###STEP-3
+### STEP-3
 
 _Edit config files_
  - core-site.xml
@@ -59,14 +59,14 @@ $ git clone https://github.com/mehikmat/hadoop-install.git
 $ cp -R hadoop-install/etc/hadoop/* $HADOOP_HOME/etc/hadoop/
 ```
 
-###STEP-4
+### STEP-4
 
 Format namenode
 ```
 $ hadoop namenode -format 
 ```
 
-###STEP-5
+### STEP-5
 _Start HDFS and YARN services_
 ```
 $ start-dfs.sh
@@ -75,20 +75,20 @@ $ yarn-daemons.sh start historyserver
 $ yarn-daemons.sh start proxyserver
 ```
 
-###Utilities:
+##### Utilities:
 - $HADOOP_HOME/bin/hadoop  :>>>   For basic hadoop operations
 - $HADOOP_HOME/bin/yarn   :>>>   For YARN related operations
 - $HADOOP_HOME/bin/mapred :>>>   For MapReduce realted operations
 - $HADOOP_HOME/bin/hdfs  :>>>    For HDFS related operations
 
-###Demoen Utilities:
+##### Demoen Utilities:
 - $HADOOP_HOME/sbin/start-yarn.sh;stop-yarn.sh
 - $HADOOP_HOME/sbin/start-dfs.sh;stop-dfs.sh 
 - $HADOOP_HOME/sbin/start-all.sh;stop-all.sh    
 - $HADOOP_HOME/sbin/yarn-daemons.sh start historyserver/proxyserver
 
 
-###STEP-6
+### STEP-6
 Check installation using `jps`
 ```
 $ jps
@@ -105,12 +105,12 @@ $ jps
 
 If these services are not up, check the logs in `$HADOOP_HOME/logs` directory to identify the issue.
 
-###Web interfaces
+##### Web interfaces
 - NameNode:>         http://localhost:9870
 - ResourceManager:>  http://localhost:8088
 - JobHistoryServer:> http://localhost:19888
 
-###Building Hadoop Native Library
+### Building Hadoop Native Library
 
 If you see  
 ```
@@ -130,7 +130,7 @@ $ mvn package -Pdist,native -Dskiptests -Dtar
 $ cp $HADOOP_HOME/src/hadoop-dist/target/hadoop-3.2.2/lib/native/*  $HADOOP_HOME/lib/native/
 ```
 
-###Setting up LZO compression
+### Setting up LZO compression
 Install liblzo
 - On Redhat based systems
 `sudo yum install liblzo-devel`
@@ -184,10 +184,10 @@ Add the following to your `mapred-site.xml`:
 </property>
 ```
 
-###References:
+### References:
 - https://hadoop.apache.org
 
-####What is on what
+### What is on what
 ```
 Master Node:
  - NameNode

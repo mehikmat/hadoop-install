@@ -21,7 +21,8 @@ for each masters
    
 for each workers
    do ssh-keyscan -f masters.txt >> ~/.ssh/known_hosts
-   
+```
+
 5) Install hadoop in all the machines
 
 6) Install zookeepr in all the machines(optional)

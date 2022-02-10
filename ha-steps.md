@@ -1,4 +1,4 @@
-1) St host name for each machines
+1) Set host name for each machines
 
 ```
 echo master1 > /etc/hostname
